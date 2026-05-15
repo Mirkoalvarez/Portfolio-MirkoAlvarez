@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/* ── Custom Theme ── */
+@theme {
+  --color-navy: #1F3A44;
+  --color-navy-light: #263f49;
+  --color-petrol: #3A6D7E;
+  --color-petrol-light: #4a8191;
+  --color-amber: #EBB068;
+  --color-amber-dark: #d49a52;
+  --color-cream: #F9F4E8;
+  --color-cream-muted: #f0e8d6;
+
+  --font-heading: 'Instrument Serif', serif;
+  --font-body: 'Barlow', sans-serif;
+}
+
+/* ── Base Styles ── */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-navy);
+    color: var(--color-cream);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-amber);
+    color: var(--color-navy);
+  }
+}
+
+/* ── Utility Classes ── */
+@layer utilities {
+  .heading-italic {
+    font-family: var(--font-heading);
+    font-style: italic;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-amber), var(--color-cream));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: rgba(58, 109, 126, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(249, 244, 232, 0.08);
+  }
+
+  .glass-card-solid {
+    background: rgba(58, 109, 126, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(249, 244, 232, 0.1);
+  }
+}
+
+/* ── Custom Cursor ── */
+.custom-cursor {
+  position: fixed;
+  top: -30px;
+  left: -30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: opacity 0.4s ease;
+
+  /* Liquid glass background */
+  background: radial-gradient(circle at 35% 35%,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.05) 40%,
+      rgba(0, 0, 0, 0.05) 100%);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+
+  /* Inner glow */
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.08),
+    inset -2px -2px 6px rgba(0, 0, 0, 0.1),
+    0 0 12px rgba(255, 255, 255, 0.04);
+}
+
+/* Per-corner border using conic-gradient */
+.custom-cursor::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  padding: 1px;
+  background: conic-gradient(from 270deg,
+      rgba(255, 255, 255, 0.05) 0deg,
+      /* top-left: white */
+      rgba(255, 255, 255, 0.05) 75deg,
+      rgba(0, 0, 0, 0.1) 105deg,
+      /* fade into top-right: dark */
+      rgba(0, 0, 0, 0.05) 165deg,
+      rgba(255, 255, 255, 0.05) 195deg,
+      /* fade into bottom-right: white */
+      rgba(255, 255, 255, 0.05) 255deg,
+      rgba(0, 0, 0, 0.1) 285deg,
+      /* fade into bottom-left: dark */
+      rgba(0, 0, 0, 0.05) 345deg,
+      rgba(255, 255, 255, 0.05) 360deg
+      /* fade back to top-left */
+    );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+}
+
+
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-petrol);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-amber);
+}

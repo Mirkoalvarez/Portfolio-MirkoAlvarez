@@ -1,0 +1,78 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Evaluacion-Ambiental",
+      "description": "Plataforma de gestión ambiental con evaluación de riesgos y planes de acción.",
+      "tags": [
+        "React",
+        "Node.js",
+        "SQLite",
+        "Express.js"
+      ],
+      "image": "",
+      "github": "https://github.com/Mirkoalvarez/evaluacion-ambiental",
+      "live": "https://ecoeval.onrender.com",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Mikita-app",
+      "description": "PWA con cotizador mobile-first, sistema POS desktop-responsive, gestión de caja y exportación a Excel. Conectado a Supabase en la nube.",
+      "tags": [
+        "Next.js",
+        "TypeScript",
+        "Supabase",
+        "TailwindCSS"
+      ],
+      "image": "",
+      "github": "https://github.com/Mirkoalvarez/mikita-app",
+      "live": "https://mikita-app.vercel.app/",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Landing Page - Martina Zanettini Stubelj",
+      "description": "Landing page para la licienciada en gestión ambiental Martina Zanettini Stubelj.",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "image": "",
+      "github": "https://github.com/Mirkoalvarez/Martina-Zanettini-Stubelj",
+      "live": "https://martina-zanettini-stubelj.vercel.app/",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "title": "Oblivion - Red social",
+      "description": "Red social con sistema de publicación, comentarios y me gusta.",
+      "tags": [
+        "PHP",
+        "Angular CLI",
+        "SQLite",
+        "Apache"
+      ],
+      "image": "",
+      "github": "https://github.com/Mirkoalvarez/Oblivion",
+      "live": "https://github.com/Mirkoalvarez/Oblivion",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "ESPNApp",
+      "description": "ESPNApp es una aplicación Android que replica una portada deportiva con pestañas para noticias, resultados en vivo, búsqueda de equipos y accesos adicionales desde un menú inferior.",
+      "tags": [
+        "Kotlin",
+        "Android Studio",
+        "Arquitectura MVVM",
+        "Public-ESPN-API"
+      ],
+      "image": "",
+      "github": "https://github.com/Mirkoalvarez/ESPNApp",
+      "live": "https://github.com/Mirkoalvarez/ESPNApp",
+      "featured": false
+    }
+  ]
+}

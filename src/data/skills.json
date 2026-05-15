@@ -1,0 +1,45 @@
+{
+  "categories": [
+    {
+      "title": "Frontend",
+      "icon": "frontend",
+      "skills": [
+        { "name": "React", "icon": "SiReact" },
+        { "name": "Next.js", "icon": "SiNextdotjs" },
+        { "name": "Redux Toolkit", "icon": "SiRedux" },
+        { "name": "Vite.js", "icon": "SiVite" },
+        { "name": "TypeScript", "icon": "SiTypescript" },
+        { "name": "Tailwind CSS", "icon": "SiTailwindcss" },
+        { "name": "HTML5", "icon": "SiHtml5" },
+        { "name": "CSS3", "icon": "SiCss" }
+      ]
+    },
+    {
+      "title": "Backend & DB",
+      "icon": "backend",
+      "skills": [
+        { "name": "Node.js", "icon": "SiNodedotjs" },
+        { "name": "Express", "icon": "SiExpress" },
+        { "name": "Nest.js", "icon": "SiNestjs" },
+        { "name": "Python", "icon": "SiPython" },
+        { "name": "PostgreSQL", "icon": "SiPostgresql" },
+        { "name": "MySQL", "icon": "SiMysql" },
+        { "name": "Supabase", "icon": "SiSupabase" }
+      ]
+    },
+    {
+      "title": "DevOps & Tooling",
+      "icon": "tools",
+      "skills": [
+        { "name": "Git", "icon": "SiGit" },
+        { "name": "Docker", "icon": "SiDocker" },
+        { "name": "Jest", "icon": "SiJest" },
+        { "name": "Postman", "icon": "SiPostman" },
+        { "name": "Selenium", "icon": "SiSelenium" },
+        { "name": "AI Agents / LLMs", "icon": "SiOpenai" },
+        { "name": "N8N", "icon": "SiN8N" },
+        { "name": "Jira", "icon": "SiJira" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Mirko Alvarez",
+  "role": "Full Stack Developer",
+  "tagline": "Construyo experiencias digitales que combinan diseño y funcionalidad.",
+  "bio": "Soy desarrollador Full Stack y estudiante avanzado de la Tecnicatura en Programación en la UCES. Me especializo en el ecosistema de React y Node.js, desarrollando aplicaciones web modernas, escalables y enfocadas en una buena experiencia de usuario. Disfruto trabajar tanto en frontend como en backend, creando soluciones mantenibles, ordenadas y pensadas para crecer a futuro. Además, complementé mi formación con certificaciones en Data Analytics y QA Manual, lo que me dio una mirada más analítica y orientada a la calidad del software. Me interesa construir productos funcionales, optimizados y bien estructurados, siempre buscando aprender nuevas herramientas y mejorar mis prácticas de desarrollo.",
+  "email": "mirko@example.com",
+  "github": "https://github.com/mirkoalvarez",
+  "linkedin": "https://linkedin.com/in/mirko-alvarez",
+  "location": "Argentina"
+}

@@ -22,15 +22,25 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     >
       {/* Image Area */}
       <div className="relative h-48 bg-petrol/30 overflow-hidden">
-        {/* Gradient Placeholder */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              hsl(${190 + index * 15}, 40%, ${20 + index * 3}%) 0%, 
-              hsl(${200 + index * 10}, 35%, ${15 + index * 2}%) 100%)`,
-          }}
-        />
+        {/* Background Image or Gradient Placeholder */}
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className={`absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-110 ${
+              (project as any).imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'
+            }`}
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(135deg, 
+                hsl(${190 + index * 15}, 40%, ${20 + index * 3}%) 0%, 
+                hsl(${200 + index * 10}, 35%, ${15 + index * 2}%) 100%)`,
+            }}
+          />
+        )}
         {/* Project number overlay */}
         <div className="absolute top-4 left-4">
           <span className="heading-italic text-6xl text-cream/5">

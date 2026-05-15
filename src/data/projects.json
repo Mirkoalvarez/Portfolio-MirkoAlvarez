@@ -8,9 +8,10 @@
         "React",
         "Node.js",
         "SQLite",
-        "Express.js"
+        "Express.js",
+        "API RESTful"
       ],
-      "image": "",
+      "image": "/ecoeval.webp",
       "github": "https://github.com/Mirkoalvarez/evaluacion-ambiental",
       "live": "https://ecoeval.onrender.com",
       "featured": true
@@ -25,7 +26,7 @@
         "Supabase",
         "TailwindCSS"
       ],
-      "image": "",
+      "image": "/mikitaapp.webp",
       "github": "https://github.com/Mirkoalvarez/mikita-app",
       "live": "https://mikita-app.vercel.app/",
       "featured": true
@@ -39,7 +40,7 @@
         "CSS",
         "JavaScript"
       ],
-      "image": "",
+      "image": "/Landing-Martina.webp",
       "github": "https://github.com/Mirkoalvarez/Martina-Zanettini-Stubelj",
       "live": "https://martina-zanettini-stubelj.vercel.app/",
       "featured": true
@@ -54,7 +55,7 @@
         "SQLite",
         "Apache"
       ],
-      "image": "",
+      "image": "/Oblivion.webp",
       "github": "https://github.com/Mirkoalvarez/Oblivion",
       "live": "https://github.com/Mirkoalvarez/Oblivion",
       "featured": false
@@ -69,7 +70,8 @@
         "Arquitectura MVVM",
         "Public-ESPN-API"
       ],
-      "image": "",
+      "image": "/ESPN.webp",
+      "imageFit": "contain",
       "github": "https://github.com/Mirkoalvarez/ESPNApp",
       "live": "https://github.com/Mirkoalvarez/ESPNApp",
       "featured": false

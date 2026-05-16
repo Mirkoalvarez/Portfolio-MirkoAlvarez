@@ -1,6 +1,7 @@
 import { useState, useRef, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCheckCircle, FiCopy, FiCheck } from 'react-icons/fi'
+import emailjs from '@emailjs/browser'
+import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCheckCircle, FiCopy, FiCheck, FiAlertCircle } from 'react-icons/fi'
 import SectionReveal from '../components/SectionReveal'
 import SectionHeading from '../components/SectionHeading'
 import profileData from '../data/profile.json'
@@ -9,7 +10,12 @@ const { github, linkedin, location } = profileData
 // Email split into parts — assembled only at runtime, never in plain HTML
 const EMAIL_PARTS = ['mirko.alvarez01', '@', 'gmail', '.', 'com']
 
+const EJS_SERVICE  = 'service_bv1910p'
+const EJS_TEMPLATE = 'template_inwm3fk'
+const EJS_KEY      = 'bC6dkf7g_jz5cv13K'
+
 export default function Contact() {
+  const formRef = useRef<HTMLFormElement>(null)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [emailCopied, setEmailCopied] = useState(false)
@@ -28,14 +34,19 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+    if (!formRef.current) return
     setStatus('sending')
 
-    // Simulate sending — replace with real email service integration
-    setTimeout(() => {
-      setStatus('sent')
-      setFormData({ name: '', email: '', message: '' })
-      setTimeout(() => setStatus('idle'), 4000)
-    }, 1500)
+    emailjs.sendForm(EJS_SERVICE, EJS_TEMPLATE, formRef.current, { publicKey: EJS_KEY })
+      .then(() => {
+        setStatus('sent')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setStatus('idle'), 5000)
+      })
+      .catch(() => {
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 5000)
+      })
   }
 
   return (
@@ -130,7 +141,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <SectionReveal delay={0.2} direction="right" className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="glass-card-solid rounded-2xl p-6 sm:p-8 space-y-5">
+            <form ref={formRef} onSubmit={handleSubmit} className="glass-card-solid rounded-2xl p-6 sm:p-8 space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-cream/40 text-xs font-body font-medium tracking-wider uppercase mb-2">
@@ -138,6 +149,7 @@ export default function Contact() {
                   </label>
                   <input
                     id="name"
+                    name="from_name"
                     type="text"
                     required
                     value={formData.name}
@@ -152,6 +164,7 @@ export default function Contact() {
                   </label>
                   <input
                     id="email"
+                    name="from_email"
                     type="email"
                     required
                     value={formData.email}
@@ -168,6 +181,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={5}
                   value={formData.message}
@@ -179,11 +193,14 @@ export default function Contact() {
 
               <motion.button
                 type="submit"
-                disabled={status === 'sending' || status === 'sent'}
-                className={`w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-body font-semibold text-sm transition-all duration-300 ${status === 'sent'
+                disabled={status === 'sending' || status === 'sent' || status === 'error'}
+                className={`w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-body font-semibold text-sm transition-all duration-300 ${
+                  status === 'sent'
                     ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                    : status === 'error'
+                    ? 'bg-red-500/20 text-red-400 border border-red-500/30'
                     : 'bg-amber text-navy hover:bg-amber-dark hover:shadow-lg hover:shadow-amber/20'
-                  }`}
+                }`}
                 whileHover={status === 'idle' ? { scale: 1.03 } : {}}
                 whileTap={status === 'idle' ? { scale: 0.97 } : {}}
               >
@@ -209,7 +226,12 @@ export default function Contact() {
                     ¡Mensaje enviado!
                   </>
                 )}
-                {status === 'error' && 'Error al enviar'}
+                {status === 'error' && (
+                  <>
+                    <FiAlertCircle size={16} />
+                    Error al enviar
+                  </>
+                )}
               </motion.button>
             </form>
           </SectionReveal>

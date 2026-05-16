@@ -1,13 +1,30 @@
-import { useState, type FormEvent } from 'react'
+import { useState, useRef, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCheckCircle } from 'react-icons/fi'
+import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCheckCircle, FiCopy, FiCheck } from 'react-icons/fi'
 import SectionReveal from '../components/SectionReveal'
 import SectionHeading from '../components/SectionHeading'
-import profile from '../data/profile.json'
+import profileData from '../data/profile.json'
+const { github, linkedin, location } = profileData
+
+// Email split into parts — assembled only at runtime, never in plain HTML
+const EMAIL_PARTS = ['mirko.alvarez01', '@', 'gmail', '.', 'com']
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [emailCopied, setEmailCopied] = useState(false)
+  const [emailRevealed, setEmailRevealed] = useState(false)
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const handleCopyEmail = () => {
+    const address = EMAIL_PARTS.join('')
+    navigator.clipboard.writeText(address).then(() => {
+      setEmailRevealed(true)
+      setEmailCopied(true)
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current)
+      copyTimeoutRef.current = setTimeout(() => setEmailCopied(false), 2500)
+    })
+  }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -48,11 +65,28 @@ export default function Contact() {
                   <div className="w-10 h-10 rounded-xl bg-amber/10 flex items-center justify-center shrink-0">
                     <FiMail className="text-amber" size={18} />
                   </div>
-                  <div>
-                    <p className="text-cream/40 text-xs font-body font-medium tracking-wider uppercase mb-1">Email</p>
-                    <a href={`mailto:${profile.email}`} className="text-cream text-sm font-body hover:text-amber transition-colors duration-300">
-                      {profile.email}
-                    </a>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-cream/40 text-xs font-body font-medium tracking-wider uppercase mb-2">Email</p>
+                    <div className="flex items-center gap-2">
+                      {/* Email shown only after user reveals it — never in raw HTML */}
+                      <span className="text-cream text-sm font-body truncate">
+                        {emailRevealed ? EMAIL_PARTS.join('') : '●●●●●●●●@●●●●●.com'}
+                      </span>
+                      <motion.button
+                        type="button"
+                        onClick={handleCopyEmail}
+                        title="Copiar email"
+                        className={`shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-body font-medium transition-all duration-300 ${emailCopied
+                            ? 'bg-green-500/15 text-green-400 border border-green-500/20'
+                            : 'bg-amber/10 text-amber border border-amber/20 hover:bg-amber/20'
+                          }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {emailCopied ? <FiCheck size={12} /> : <FiCopy size={12} />}
+                        {emailCopied ? 'Copiado' : 'Copiar'}
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
 
@@ -62,7 +96,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-cream/40 text-xs font-body font-medium tracking-wider uppercase mb-1">Ubicación</p>
-                    <p className="text-cream text-sm font-body">{profile.location}</p>
+                    <p className="text-cream text-sm font-body">{location}</p>
                   </div>
                 </div>
               </div>
@@ -72,7 +106,7 @@ export default function Contact() {
                 <p className="text-cream/40 text-xs font-body font-medium tracking-wider uppercase mb-4">También en</p>
                 <div className="flex gap-3">
                   <a
-                    href={profile.github}
+                    href={github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy/30 border border-cream/5 text-cream/60 hover:text-amber hover:border-amber/20 transition-all duration-300 text-sm font-body"
@@ -81,7 +115,7 @@ export default function Contact() {
                     GitHub
                   </a>
                   <a
-                    href={profile.linkedin}
+                    href={linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy/30 border border-cream/5 text-cream/60 hover:text-amber hover:border-amber/20 transition-all duration-300 text-sm font-body"
@@ -146,11 +180,10 @@ export default function Contact() {
               <motion.button
                 type="submit"
                 disabled={status === 'sending' || status === 'sent'}
-                className={`w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-body font-semibold text-sm transition-all duration-300 ${
-                  status === 'sent'
+                className={`w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-body font-semibold text-sm transition-all duration-300 ${status === 'sent'
                     ? 'bg-green-500/20 text-green-400 border border-green-500/30'
                     : 'bg-amber text-navy hover:bg-amber-dark hover:shadow-lg hover:shadow-amber/20'
-                }`}
+                  }`}
                 whileHover={status === 'idle' ? { scale: 1.03 } : {}}
                 whileTap={status === 'idle' ? { scale: 0.97 } : {}}
               >

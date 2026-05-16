@@ -56,7 +56,7 @@ export default function About() {
                 </p>
                 {/* Methodologies line */}
                 <div className="flex flex-wrap gap-2 mt-5">
-                  {['Clean Architecture', 'Modular Design', 'Scrum / Kanban', 'Data Analytics', 'QA Manual'].map((tag) => (
+                  {['Architectures', 'Design Patterns', 'Scrum / Kanban', 'MVPs', 'Scalable Systems', 'Data Analytics', 'Tester QA'].map((tag) => (
                     <span
                       key={tag}
                       className="px-3 py-1 text-[10px] font-body font-medium tracking-wider uppercase rounded-full bg-amber/5 text-amber/60 border border-amber/10"

@@ -1,7 +1,7 @@
 import { useState, useRef, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
-import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCheckCircle, FiCopy, FiCheck, FiAlertCircle } from 'react-icons/fi'
+import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCheckCircle, FiCopy, FiCheck, FiAlertCircle, FiDownload } from 'react-icons/fi'
 import SectionReveal from '../components/SectionReveal'
 import SectionHeading from '../components/SectionHeading'
 import profileData from '../data/profile.json'
@@ -98,6 +98,24 @@ export default function Contact() {
                         {emailCopied ? 'Copiado' : 'Copiar'}
                       </motion.button>
                     </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber/10 flex items-center justify-center shrink-0">
+                    <FiDownload className="text-amber" size={18} />
+                  </div>
+                  <div>
+                    <p className="text-cream/40 text-xs font-body font-medium tracking-wider uppercase mb-2">Currículum</p>
+                    <a
+                      href="/CV_Mirko_Alvarez.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber/10 border border-amber/20 text-amber text-sm font-body font-medium hover:bg-amber/20 transition-all duration-300"
+                    >
+                      <FiDownload size={14} />
+                      Ver CV
+                    </a>
                   </div>
                 </div>
 
